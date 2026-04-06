@@ -1,0 +1,7 @@
+[tools]
+go = "1.26.1"
+golangci-lint = "v2.11.3"
+just = "1.48.1"
+protoc = "34.1"
+protoc-gen-go = "1.36.11"
+protoc-gen-go-grpc = "1.6.1"

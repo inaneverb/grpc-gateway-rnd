@@ -1,0 +1,66 @@
+edition = "2024";
+
+package com.example.user;
+
+option go_package = "user/v1;pb_user_v1";
+
+import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+
+service User {
+  rpc Create(UserCreateRequest) returns (UserCreateResponse) {
+    option (google.api.http) = {
+      put: "/api/v1/users"
+    };
+  };
+  rpc Get(UserGetRequest) returns (UserGetResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/users/{id}"
+    };
+  };
+  rpc Delete(UserDeleteRequest) returns (UserDeleteResponse) {
+    option (google.api.http) = {
+      delete: "/api/v1/users/{id}"
+    };
+  };
+}
+
+message UserCreateRequest {
+  string name = 1 [
+    default = "John Doe",
+    (google.api.field_behavior) = REQUIRED
+  ];
+  int64 age = 2 [
+    default = 18
+  ];
+}
+
+message UserCreateResponse {
+  UserModel user = 1;
+}
+
+message UserGetRequest {
+  string id = 1 [
+    (google.api.field_behavior) = REQUIRED
+  ];
+}
+
+message UserGetResponse {
+  UserModel user = 1;
+}
+
+message UserDeleteRequest {
+  string id = 1 [
+    (google.api.field_behavior) = REQUIRED
+  ];
+}
+
+message UserDeleteResponse {
+  UserModel user = 1;
+}
+
+message UserModel {
+  string id = 1;
+  string name = 2;
+  int64 age = 3;
+}
