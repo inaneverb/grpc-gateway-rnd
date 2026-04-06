@@ -77,6 +77,7 @@ protogen:
 	{{exe_protoc}} \
 		-I ./api \
 		-I ./api/include \
+		--include_imports \
 		--go_out=./internal/gen/proto/ \
 		--go-grpc_out=./internal/gen/proto/ \
 		--descriptor_set_out=./config/envoy/descriptor.pb \
